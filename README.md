@@ -1,4 +1,4 @@
-# AI Homework Diary
+# Study Pilot 
 
 ## Project Description
 
