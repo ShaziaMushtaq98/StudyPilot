@@ -1,10 +1,8 @@
 # Study Pilot 
 
 ## Project Description
+StudyPilot is an AI-powered multi-agent homework companion that helps students manage, understand, and complete homework using OCR, intelligent subject-specific AI agents, and personalized learning support.
 
-AI Homework Diary is a Final Year Project that helps students manage homework using OCR and Artificial Intelligence.
-
-The application extracts homework from uploaded diary images and provides subject-wise assistance.
 
 ---
 
