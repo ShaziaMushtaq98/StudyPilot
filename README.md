@@ -40,7 +40,7 @@
 
 ## 🛠️ Technology Stack
 
-* **Frontend:** React.js / HTML5 / CSS3 / JavaScript (ES6+)
+* **Frontend:** React.js 
 * **Backend:** ASP.NET 
 * **Database:** PostgreSQL
 * **Version Control & CI/CD:** Docker, Git, GitHub Actions (`.github/workflows/ci.yml`)
