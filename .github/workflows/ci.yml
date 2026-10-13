@@ -1,0 +1,25 @@
+name: StudyPilot CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify repository
+        run: |
+          echo "StudyPilot CI is running successfully."
+          echo "Repository checked out successfully."
