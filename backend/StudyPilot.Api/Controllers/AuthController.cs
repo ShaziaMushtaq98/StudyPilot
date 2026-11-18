@@ -1,5 +1,4 @@
-﻿
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StudyPilot.Api.Data;
 using StudyPilot.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudyPilot.Api.Controllers
 {
@@ -27,6 +27,19 @@ namespace StudyPilot.Api.Controllers
             _db = db;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+        }
+
+        [Authorize]
+        [HttpGet("protected")]
+        public IActionResult Protected()
+        {
+            return Ok(new
+            {
+                message = "You are authorized!",
+                userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                name = User.Identity?.Name,
+                role = User.FindFirst(ClaimTypes.Role)?.Value
+            });
         }
 
         [HttpGet("test")]
