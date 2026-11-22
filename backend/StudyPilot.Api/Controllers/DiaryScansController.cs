@@ -44,10 +44,8 @@ namespace StudyPilot.Api.Controllers
                     ConfirmedAt = d.ConfirmedAt
                 })
                 .FirstOrDefaultAsync();
-
             if (scan == null)
                 return NotFound("Diary scan not found.");
-
             return Ok(scan);
         }
 
