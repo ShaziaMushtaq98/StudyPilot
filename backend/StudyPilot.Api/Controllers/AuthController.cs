@@ -109,15 +109,9 @@ namespace StudyPilot.Api.Controllers
             var user = await _db.Users.FirstOrDefaultAsync(
                 u => u.NormalizedIdentifier == normalizedIdentifier);
 
-            if (user == null || !user.IsActive)
-            {
-                return Unauthorized(new
-                {
-                    message = "Invalid identifier or password."
-                });
-            }
+            
 
-            if (user.Role != Role.Parent)
+            if (user == null || !user.IsActive)
             {
                 return Unauthorized(new
                 {

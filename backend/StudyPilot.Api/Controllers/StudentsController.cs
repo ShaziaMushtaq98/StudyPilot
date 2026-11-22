@@ -25,6 +25,36 @@ namespace StudyPilot.Api.Controllers
             _passwordHasher = passwordHasher;
         }
 
+        [HttpGet("my-children")]
+        public async Task<IActionResult> GetMyChildren()
+        {
+            // Get logged-in parent's ID from JWT
+            string? parentIdString =
+                User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (!Guid.TryParse(parentIdString, out Guid parentId))
+            {
+                return Unauthorized();
+            }
+
+            // Get students linked to this parent
+            var children = await _db.ParentChildren
+                .Where(pc => pc.ParentUserId == parentId)
+                .Include(pc => pc.Student)
+                .ThenInclude(s => s.StudentProfile)
+                .Select(pc => new
+                {
+                    id = pc.Student.Id,
+                    displayName = pc.Student.DisplayName,
+                    identifier = pc.Student.Identifier,
+                    classLevel = pc.Student.StudentProfile!.ClassLevel,
+                    schoolName = pc.Student.StudentProfile.SchoolName
+                })
+                .ToListAsync();
+
+            return Ok(children);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> RegisterStudent(
             StudentRegisterRequest request)
